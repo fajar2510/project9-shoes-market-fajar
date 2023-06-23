@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import Wrapper from "@/components/Wrapper";
 import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
@@ -11,7 +11,6 @@ import { addToCart } from "@/store/cartSlice";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 const ProductDetails = ({ product, products }) => {
   const [selectedSize, setSelectedSize] = useState();

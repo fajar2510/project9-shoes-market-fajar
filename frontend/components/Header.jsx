@@ -17,7 +17,7 @@ const Header = () => {
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState("translate-y-0");
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [categories, setCategory] = useState(null);
+  const [categories, setCategories] = useState(null);
 
   const { cartItems } = useSelector((state) => state.cart);
 
@@ -47,17 +47,15 @@ const Header = () => {
 
   const fetchCategories = async () => {
     const { data } = await fetchDataFromApi("/api/categories?populate=*");
-    setCategory(data);
+    setCategories(data);
   };
 
   return (
     <header
-      className={`w-full h-[50px] md:h-[80px]
-    bg-white flex items-between z-20 sticky top-0
-    transition-transform duration-300 ${show}`}
+      className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show}`}
     >
-      <Wrapper className="h-[50px] pt-3 flex justify-between items-center">
-        <Link href="/" className="">
+      <Wrapper className="h-[60px] flex justify-between items-center">
+        <Link href="/">
           <img src="/logo.svg" className="w-[40px] md:w-[60px]" />
         </Link>
 
@@ -77,19 +75,16 @@ const Header = () => {
         )}
 
         <div className="flex items-center gap-2 text-black">
-          {/* icon start */}
-          <div
-            className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center
-           items-center hover:bg-black/[0.05] cursor-pointer relative"
-          >
+          {/* Icon start */}
+          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
             <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
             <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
               51
             </div>
           </div>
-          {/* icon end */}
+          {/* Icon end */}
 
-          {/* icon start */}
+          {/* Icon start */}
           <Link href="/cart">
             <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
               <BsCart className="text-[15px] md:text-[20px]" />
@@ -100,13 +95,10 @@ const Header = () => {
               )}
             </div>
           </Link>
-          {/* icon end */}
+          {/* Icon end */}
 
           {/* Mobile icon start */}
-          <div
-            className="w-8 md:w-12 h-8 md:h-12 rounded-full flex md:hidden justify-center
-           items-center hover:bg-black/[0.05] cursor-pointer relative"
-          >
+          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex md:hidden justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2">
             {mobileMenu ? (
               <VscChromeClose
                 className="text-[16px]"
